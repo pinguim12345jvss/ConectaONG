@@ -59,22 +59,15 @@ O projeto contribui para fortalecer parcerias entre organizações e comunidades
 
 ## 👥 Integrantes
 
-- **João Vitor Souza Santiago** – [Currículo](#)  
-- **Abner Eduardo de Brito Torres** – [Currículo](#)  
+- **João Vitor Souza Santiago** – 
+- **Abner Eduardo de Brito Torres** – 
 
 ---
 
 ## 🚀 Publicação
 
 O projeto foi publicado no **GitHub Pages** e pode ser acessado no link:  
-🔗 [https://seudominio.github.io/conectaong](https://seudominio.github.io/conectaong)
-
----
-
-## 📹 Apresentação do Projeto
-
-O vídeo de apresentação do projeto pode ser encontrado no link:  
-🎥 [Inserir link do vídeo aqui]
+🔗 https://github.com/pinguim12345jvss/ConectaONG
 
 ---
 
