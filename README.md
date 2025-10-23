@@ -71,4 +71,4 @@ O projeto foi publicado no **GitHub Pages** e pode ser acessado no link:
 
 ---
 
-© 2024 - Projeto desenvolvido para a disciplina **Programação Web Front-End** – UTFPR.
+© 2025 - Projeto desenvolvido para a disciplina **Programação Web Front-End** – UTFPR.
