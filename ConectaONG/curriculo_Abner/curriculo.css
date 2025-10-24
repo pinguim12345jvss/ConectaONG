@@ -1,0 +1,63 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.0;
+    padding: 20px;
+}
+
+
+h2 {
+    background-color: #0056b3;
+    color: white;
+    padding: 6px;
+    margin-top: 20px;
+    border-radius: 6px;
+    font-family: 'Merriweather', serif; 
+}
+
+
+#resumo-texto {
+    font-style: italic;
+    background-color: #eaf0ff;
+    padding: 10px;
+    border-left: 4px solid #0056b3;
+}
+
+
+.lista-habilidades {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+
+a[href^="http"] {
+    color: rgb(33, 148, 231);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+a:hover {
+    color: orange;
+    text-decoration: underline;
+}
+
+
+img {
+    border-radius: 50%;
+    margin: 15px 0;
+    border: 3px solid #0056b3;
+}

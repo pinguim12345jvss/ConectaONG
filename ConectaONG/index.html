@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConectaONG</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <h1>ConectaONG</h1>
+            <nav>
+                <ul>
+                    <li><a href="#principais-ONGs">Principais ONGs</a></li>
+                    <li><a href="#forum">Forum</a></li>
+                    
+                    <li id="auth-links">
+                        <button id="show-login-btn" class="nav-btn">Entrar</button>
+                        <a href="cadastro.html" class="nav-btn">Cadastro</a> 
+                    </li>
+                    <li id="user-info" style="display:none;">
+                        <span id="logged-user-name" class="nav-user">Olá, Usuário!</span>
+                        <button id="logout-btn" class="nav-btn">Sair</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="principais-ONGs" class="section-destaque">
+            <div class="container">
+                <h2>Lista de ONGs</h2>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Pesquisar ONGs...">
+                    <button id="search-button">Buscar</button>
+                </div>
+
+                <div id="ong-list" class="ong-grid">
+                    <article class="ong-card">
+                        <img src="Im" alt="Imagem">
+                        <h3>Nome da ONG</h3>
+                        <p class="ong-genre">Gênero</p>
+                        <a href="#" class="btn-details">Ver Detalhes</a>
+                    </article>
+                </div>
+                
+                <div class="genre-filters" style="margin-top: 40px;">
+                    <button class="filter-btn active" data-genre="all">Todas</button>
+                    <button class="filter-btn" data-genre="Meio-Ambiente">Meio-Ambiente</button>
+                    <button class="filter-btn" data-genre="Social">Social</button>
+                    <button class="filter-btn" data-genre="Acessibilidade">Acessibilidade</button>
+                    <button class="filter-btn" data-genre="Infantil">Infantil</button>
+                    <button class="filter-btn" data-genre="Informativo">Informativo</button>
+                    <button class="filter-btn" data-genre="Inclusão">Inclusão</button>
+                    <button class="filter-btn" data-genre="Saude">Saude</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="forum" class="section-forum">
+            <div class="container">
+                <h2>Fórum de Discussão</h2>
+                <p class="forum-intro">Compartilhe suas opiniões, recomendações e tire dúvidas sobre as ONGs listadas. (Apenas para usuários logados)</p>
+
+                <div id="forum-posts">
+                    <div class="forum-post">
+                        <h4>Exemplo.</h4>
+                        <p>Ótima maneira de incentivar a comunicação e interação entre membros.
+                        </p>
+                        <span class="post-meta">Postado por Pessoa em 21/08/2025</span>
+                    </div>
+                </div>
+                <button class="btn-new-post">Criar Novo Post</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="ong-details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="modal-ong-image" src="" alt="Logo da ONG">
+            <h3 id="modal-ong-name">Nome da ONG</h3>
+            <p><strong>Causas:</strong> <span id="modal-ong-causas"></span></p>
+            <p id="modal-ong-description">Descrição detalhada ou sinopse da ONG virá aqui.</p>
+
+            <a id="modal-ong-site-link" href="#" target="_blank" class="btn-site">Visitar Site Oficial</a>
+        </div>
+    </div>
+    
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn login-close-btn">&times;</span>
+            <h3>Entrar</h3>
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="Nome de Usuário" required>
+                <input type="password" id="login-password" placeholder="Senha" required>
+                <button type="submit" class="btn-site">Entrar</button>
+                <p id="login-message" class="message"></p>
+            </form>
+            <a href="cadastro.html" class="btn-link">Ainda não tem conta? Cadastre-se</a>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ConectaONG - Projeto Front End - UTFPR Cornélio Procópio.</p>
+            <p>Feito para estudo.</p>
+            <p>Membros: João Vitor Souza Santiago, Abner Eduardo de Brito Torres</p>
+            <p>Curriculos: | <a href="curriculo_João/curriculo_J.html" target="_blank" class="footer-link">João Vitor</a> | <a href="curriculo_Abner/curriculoA.html" target="_blank" class="footer-link">Abner Eduardo</a></p>
+        </div>
+
+        <p>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss"
+                    alt="CSS válido!" />
+            </a>
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+
+</html>

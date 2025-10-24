@@ -1,0 +1,82 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(190, 190, 190);
+    color: black;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* seletor ID */
+#nome {
+    background-color: rgb(216, 76, 83);
+    border-radius: 5px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    color: black;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+#nome:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
+    border-color: grey;
+}
+
+/* seletor classe */
+.foto-perfil {
+    display: block;
+    margin: 0 auto; 
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.foto-perfil:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    border-color: grey;
+}
+
+.titulo {
+    background-color: rgb(216, 76, 83);
+    color: black;
+    padding: 8px;
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.titulo:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
+    border-color: grey;
+}
+
+/* seletor atributo */
+a [href] {
+    color: pink;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: red;
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+.contato,
+.habilidades,
+.hobbies {
+    margin: 10px 0 20px 40px;
+}
