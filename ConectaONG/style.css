@@ -7,6 +7,7 @@
     --card-bg: #ffffff;
     --texto-color:#333333;
     --dark-header: #112d4e;
+    --btn-hover: #38c0ff;
 }
 
 * {
@@ -20,6 +21,33 @@ body {
     background-color: var(--dark-bg);
     color: var(--texto-color);
     line-height: 1.6;
+}
+
+body.high-contrast {
+    --primary-color: #ffff00;
+    --secondary-color: #ffff00;
+    --dark-bg: #000000;
+    --card-bg: #000000;
+    --texto-color: #ffffff;
+    --dark-header: #000000;
+    --btn-hover: #ffff94;
+}
+
+body.high-contrast a {
+    color: var(--primary-color) !important;
+}
+
+body.high-contrast .main-header{
+    border-bottom: 3px solid var(--primary-color);
+}
+
+body.high-contrast .forum-post {
+    border-left: 5px solid var(--primary-color);
+}
+
+body.high-contrast .ong-card{
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 5px 20px rgba(255, 255, 0, 0.4);
 }
 
 .container {
@@ -54,7 +82,7 @@ a {
 }
 
 a:hover {
-    color: #38c0ff;
+    color: var(--btn-hover);
     transform: scale(1.05);
     transition: 0.3s;
 }
@@ -95,10 +123,7 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-.main-header nav ul li a:hover {
-    background-color: var(--primary-color);
-    color: var(--card-bg);
-}
+
 
 /* Modal */
 
@@ -110,7 +135,8 @@ a:hover {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: rgba(0, 0, 0, 0.7); 
     padding-top: 60px;
 }
@@ -159,7 +185,7 @@ a:hover {
     margin: 20px auto 0;
     padding: 10px;
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: var(--card-bg);
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
@@ -167,9 +193,13 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-.btn-site:hover {
-    background-color: #38c0ff; 
+body.high-contrast #register-form input,
+body.high-contrast #login-form input{
+    background-color: #000000;
+    color: var(--texto-color);
+    border: 1px solid var(--primary-color);
 }
+
 
 /* Seções */
 
@@ -189,15 +219,21 @@ section {
     max-width: 500px;
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
-    background-color: #f0f0f0;
+    background-color: var(--card-bg);
     color: var(--texto-color);
     font-size: 1em;
+}
+
+body.high-contrast #search-input {
+    background-color: #000000;
+    border: 1px solid var(--primary-color);
+    color: var(--texto-color);
 }
 
 #search-button {
     padding: 10px 20px;
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: var(--texto-color);
     border: none;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -273,8 +309,9 @@ section {
 }
 
 .ong-card .btn-details:hover {
-    background-color:#00c2d0;
+    background-color:var(--btn-hover);
     border-color: var(--primary-color);
+    color: var(--card-bg);
     transition: 0.3s;
 }
 
@@ -306,7 +343,7 @@ section {
 
 .filter-btn:hover,
 .filter-btn.active {
-    background-color: #38c0ff;
+    background-color: var(--btn-hover);
     border-color: var(--primary-color);
     color: var(--dark-bg);
     font-weight: bold;
@@ -349,7 +386,7 @@ section {
     margin: 20px auto 0;
     padding: 12px;
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: var(--card-bg);
     border: none;
     border-radius: 5px;
     font-weight: bold;
@@ -395,14 +432,14 @@ footer .footer-link:hover{
 /* Login e Cadastro */
 
 .cadastro-page main {
-    min-height: calc(100vh - 120px); /* 100% da tela menos o header e o footer */
+    min-height: calc(100vh - 120px);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .cadastro-container {
-    max-width: 400px; /* Largura menor para o formulário */
+    max-width: 400px;
     background-color: var(--card-bg);
     padding: 30px;
     border-radius: 8px;
@@ -416,7 +453,6 @@ footer .footer-link:hover{
     align-items: center;
 }
 
-/* Reutilizando os estilos existentes para inputs e botões */
 .cadastro-container h2 {
     margin-top: 0;
     color: var(--texto-color);
@@ -475,5 +511,11 @@ footer .footer-link:hover{
 }
 
 .btn-link:hover {
-    color: #38c0ff
+    color: var(--btn-hover);
+}
+
+body.high-contrast .btn-site {
+    color: #000000 !important;
+
+    border: 3px solid #000000;
 }

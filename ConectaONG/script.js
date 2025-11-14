@@ -108,7 +108,7 @@ const modalOngImage = document.getElementById('modal-ong-image');
 const modalOngDescription = document.getElementById('modal-ong-description');
 const modalOngSiteLink = document.getElementById('modal-ong-site-link');
 
-// VARIÁVEIS DE AUTENTICAÇÃO
+// variaveis de autenticação
 const loginModal = document.getElementById('login-modal'); // Existe em index.html
 const registerForm = document.getElementById('register-form'); // Existe em cadastro.html
 const loginForm = document.getElementById('login-form'); // Existe em index.html
@@ -120,6 +120,11 @@ const authLinks = document.getElementById('auth-links');
 const userInfo = document.getElementById('user-info');
 const showLoginBtn = document.getElementById('show-login-btn');
 const logoutBtn = document.getElementById('logout-btn');
+
+// variaveis do botão contraste
+const toggleContrastBtn = document.getElementById('toggle-contrast-btn');
+const CONTRAST_CLASS = 'high-contrast';
+const STORAGE_KEY_CONTRAST = 'conectaong_contrast_mode';
 
 
 function getStoredUsers() {
@@ -389,6 +394,32 @@ function setupListeners() {
     if (registerForm) {
         registerForm.addEventListener('submit', handleRegister);
     }
+
+    if (toggleContrastBtn) {
+        toggleContrastBtn.addEventListener('click', toggleContrastMode);
+    }
+}
+
+// Funções de Acessibilidade
+
+function toggleContrastMode() {
+    const bodyElement = document.body;
+
+    bodyElement.classList.toggle(CONTRAST_CLASS);
+
+    const isContrastActive = bodyElement.classList.contains(CONTRAST_CLASS);
+    localStorage.setItem(STORAGE_KEY_CONTRAST, isContrastActive ? 'active' : 'inactive');
+}
+
+function checkContrastStatus() {
+    const savedMode = localStorage.getItem(STORAGE_KEY_CONTRAST);
+    const bodyElement = document.body;
+
+    if (savedMode == 'active') {
+        bodyElement.classList.add(CONTRAST_CLASS);
+    } else {
+        bodyElement.classList.remove(CONTRAST_CLASS);
+    }
 }
 
 
@@ -439,6 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     checkLoginStatus();
+    checkContrastStatus();
 
     if (ongListContainer) {
         renderOngList(ongsData); 
