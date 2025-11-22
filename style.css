@@ -1,0 +1,531 @@
+/* Base */
+
+:root {
+    --primary-color: #3f72af;
+    --secondary-color: #f7f7f7;
+    --dark-bg: #b6e1ff;
+    --card-bg: #ffffff;
+    --texto-color:#333333;
+    --dark-header: #112d4e;
+    --btn-hover: #38c0ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--texto-color);
+    line-height: 1.6;
+}
+
+body.high-contrast {
+    --primary-color: #ffff00;
+    --secondary-color: #ffff00;
+    --dark-bg: #000000;
+    --card-bg: #000000;
+    --texto-color: #ffffff;
+    --dark-header: #000000;
+    --btn-hover: #ffff94;
+}
+
+body.high-contrast a {
+    color: var(--primary-color) !important;
+}
+
+body.high-contrast .main-header{
+    border-bottom: 3px solid var(--primary-color);
+}
+
+body.high-contrast .forum-post {
+    border-left: 5px solid var(--primary-color);
+}
+
+body.high-contrast .ong-card{
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 5px 20px rgba(255, 255, 0, 0.4);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 30px;
+    color: var(--texto-color);
+}
+
+h1 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--texto-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--btn-hover);
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+/* Cabeçalho */
+
+.main-header {
+    background-color: var(--dark-header);
+    padding: 15px 0;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.main-header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-header nav ul li {
+    margin-left: 20px;
+}
+
+.main-header nav ul li a {
+    color: var(--secondary-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+
+/* Modal */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+.modal.is-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg); 
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    color: var(--texto-color);
+    max-height: 90vh;
+    overflow-y: auto; 
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-ong-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.btn-site {
+    display: block;
+    width: 80%;
+    margin: 20px auto 0;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--card-bg);
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none; 
+    transition: background-color 0.3s;
+}
+
+body.high-contrast #register-form input,
+body.high-contrast #login-form input{
+    background-color: #000000;
+    color: var(--texto-color);
+    border: 1px solid var(--primary-color);
+}
+
+
+/* Seções */
+
+section {
+    padding: 40px 0;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+#search-input {
+    padding: 10px 15px;
+    width: 60%;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--card-bg);
+    color: var(--texto-color);
+    font-size: 1em;
+}
+
+body.high-contrast #search-input {
+    background-color: #000000;
+    border: 1px solid var(--primary-color);
+    color: var(--texto-color);
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--texto-color);
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0, 3s;
+}
+
+#search-button:hover {
+    opacity: 0.8;
+    transform: scale(1.03);
+    transition: 0.3s;
+}
+
+/* ONGs */
+
+.ong-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 180px));
+    gap: 30px;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+
+.ong-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+    padding: 0;
+    border-left: 5px solid var(--primary-color);
+    max-width: none;
+    margin: 0 auto;
+}
+
+.ong-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.ong-card img {
+    width: 100%;
+    height: 150px;
+    aspect-ratio: auto;
+    object-fit: contain;
+    display: block;
+    padding: 15px;
+    border-radius: 0px;
+}
+
+.ong-card h3 {
+    padding: 10px 15px 0;
+    font-size: 1.2em;
+    color: var(--texto-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.ong-card .ong-genre {
+    padding: 0 15px 15px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.ong-card .btn-details {
+    display: none;
+}
+
+.ong-card .btn-details:hover {
+    background-color:var(--btn-hover);
+    border-color: var(--primary-color);
+    color: var(--card-bg);
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .ong-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Categoria e generos */
+
+.genre-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    border: 2px solid var(--card-bg);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--btn-hover);
+    border-color: var(--primary-color);
+    color: var(--dark-bg);
+    font-weight: bold;
+}
+
+
+/* Forum */
+
+.section-forum {
+    background-color: var(--card-bg);
+}
+
+#forum-posts {
+    margin-top: 20px;
+}
+
+.forum-post {
+    background-color: var(--dark-bg);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.forum-post h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.forum-post .post-meta {
+    display: block;
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 10px;
+}
+
+.btn-new-post {
+    display: block;
+    width: 200px;
+    margin: 20px auto 0;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--card-bg);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: opacity 0.3s;
+}
+
+.btn-new-post:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+/* Footer */
+
+footer {
+    background-color: var(--dark-header);
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--card-bg);
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: 5px 0;
+    color: var(--secondary-color);
+}
+
+footer .footer-link {
+    color: var(--secondary-color);
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+footer .footer-link:hover{
+    color: var(--primary-color);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* Login e Cadastro */
+
+.cadastro-page main {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cadastro-container {
+    max-width: 400px;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastro-container h2 {
+    margin-top: 0;
+    color: var(--texto-color);
+}
+
+.main-header nav .nav-btn {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-header nav .nav-user {
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 8px 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#register-form input, #login-form input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#register-form .btn-site, #login-form .btn-site {
+    margin-top: 5px;
+}
+
+.message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 10px;
+    font-size: 0.9em;
+    transition: color 0.3s;
+}
+
+.btn-link:hover {
+    color: var(--btn-hover);
+}
+
+body.high-contrast .btn-site {
+    color: #000000 !important;
+
+    border: 3px solid #000000;
+}
