@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" cont="width=device-width, initial-scale=1.0">
+    <title>Admin - Gerenciador de Usuários</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body class="admin-page">
+
+    <header class="main-header">
+        <div class="container">
+            <h1>ConectaONG <span style="font-size: 0.6em; opacity: 0.8;">| Admin</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#principais-ONGs">ONGs</a></li>
+                    <li><a href="index.html#forum">Fórum</a></li>
+                    <li><a href="admin.html" class="nav-btn active-link">Admin</a></li>
+                    <li>
+                        <button id="toggle-contrast-btn" class="nav-btn">Alto Contraste</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="section-destaque">
+        <div class="container cadastro-container admin-container">
+            <h2>Gerenciador de Usuários</h2>
+
+            <form id="admin-form" class="auth-form">
+                <div class="form-group">
+                    <label for="admin-name">Nome do Usuário:</label>
+                    <input type="text" id="admin-name" placeholder="Ex: João Silva" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-email">E-mail:</label>
+                    <input type="email" id="admin-email" placeholder="Ex: joao@email.com" required>
+                </div>
+
+                <div class="admin-actions">
+                    <button type="submit" class="btn-site">Cadastrar</button>
+                    <button type="button" id="btn-clear-form" class="btn-site btn-secondary">Limpar Campos</button>
+                </div>
+            </form>
+
+            <hr class="divider">
+
+            <div class="list-controls">
+                <h3>Usuários Cadastrados</h3>
+
+                <div class="search-bar-admin">
+                    <input type="text" id="admin-search-input" placeholder="Pesquisar por nome ou e-mail...">
+                </div>
+
+                <button id="btn-delete-all" class="btn-danger">Excluir Todos</button>
+            </div>
+
+            <ul id="admin-user-list" class="user-list"></ul>
+
+            <p id="empty-list-msg" style="display:none; color: #666; margin-top: 10px;">Nenhum usuário encontrado.</p>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy ConectaONG 2025 - Painel Administrativo.</p>
+            <p><a href="index.html" class="footer-link">Voltar para o site principal.</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+</body>
+
+</html>

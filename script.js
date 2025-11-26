@@ -126,6 +126,132 @@ const toggleContrastBtn = document.getElementById('toggle-contrast-btn');
 const CONTRAST_CLASS = 'high-contrast';
 const STORAGE_KEY_CONTRAST = 'conectaong_contrast_mode';
 
+/* Logica Admin */ 
+
+const adminForm = document.getElementById('admin-form');
+const adminNameInput = document.getElementById('admin-name');
+const adminEmailInput = document.getElementById('admin-email');
+const adminUserList = document.getElementById('admin-user-list');
+const adminSearchInput = document.getElementById('admin-search-input');
+const btnClearForm = document.getElementById('btn-clear-form');
+const btnDeleteAll = document.getElementById('btn-delete-all');
+const emptyListMsg = document.getElementById('empty-list-msg');
+
+const STORAGE_KEY_ADMIN_LIST = 'conectaong_admin_list';
+
+// Recuperar usuários do localStorage (Admin)
+function getAdminUsers() {
+    const users = localStorage.getItem(STORAGE_KEY_ADMIN_LIST);
+    return users ? JSON.parse(users) : [];
+}
+
+// Salvar usuários no localStorage (Admin)
+function saveAdminUsers(users) {
+    localStorage.setItem(STORAGE_KEY_ADMIN_LIST, JSON.stringify(users));
+}
+
+// Renderizar a lista de usuários no Admin
+function renderAdminUserList(usersToRender) {
+    if (!adminUserList) return;
+
+    adminUserList.innerHTML = '';
+
+    if (usersToRender.length === 0) {
+        if (emptyListMsg) emptyListMsg.style.display = 'block';
+        return;
+    }
+
+    if (emptyListMsg) emptyListMsg.style.display = 'none';
+
+    usersToRender.forEach((user, index) => {
+        const li = document.createElement('li');
+        
+        li.innerHTML = `
+            <div class="user-info">
+                <span class="user-date">Cadastrado em: ${user.date}</span>
+                <strong>${user.name}</strong>
+                <span>${user.email}</span>
+            </div>
+            <div class="user-actions">
+                <button class="btn-danger" onclick="deleteAdminUser('${user.id}')">Excluir</button>
+            </div>
+        `;
+        adminUserList.appendChild(li);
+    });
+}
+
+// Adicionar usuário (Admin)
+function handleAdminSubmit(e) {
+    e.preventDefault();
+
+    const name = adminNameInput.value.trim();
+    const email = adminEmailInput.value.trim();
+
+    if (!name || !email) return;
+
+    const newUser = {
+        id: Date.now().toString(), // ID único baseado no timestamp
+        name: name,
+        email: email,
+        date: new Date().toLocaleString('pt-BR')
+    };
+
+    const users = getAdminUsers();
+    users.push(newUser);
+    saveAdminUsers(users);
+
+    renderAdminUserList(users);
+    
+    // Limpar campos
+    adminNameInput.value = '';
+    adminEmailInput.value = '';
+    adminNameInput.focus();
+}
+
+// Excluir um usuário específico
+window.deleteAdminUser = function(userId) {
+    if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
+    
+    let users = getAdminUsers();
+    users = users.filter(user => user.id !== userId);
+    saveAdminUsers(users);
+    
+    // Reaplica filtro se houver pesquisa ativa
+    if (adminSearchInput && adminSearchInput.value) {
+        filterAdminUsers();
+    } else {
+        renderAdminUserList(users);
+    }
+};
+
+// Excluir todos os usuários
+function handleDeleteAll() {
+    if (getAdminUsers().length === 0) return;
+
+    if (confirm('Tem certeza que deseja excluir TODOS os usuários? Esta ação não pode ser desfeita.')) {
+        localStorage.removeItem(STORAGE_KEY_ADMIN_LIST);
+        renderAdminUserList([]);
+    }
+}
+
+// Pesquisar Usuários
+function filterAdminUsers() {
+    const term = adminSearchInput.value.toLowerCase();
+    const users = getAdminUsers();
+
+    const filtered = users.filter(user => 
+        user.name.toLowerCase().includes(term) || 
+        user.email.toLowerCase().includes(term)
+    );
+
+    renderAdminUserList(filtered);
+}
+
+// Limpar Formulário
+function clearAdminFormFields() {
+    if (adminForm) adminForm.reset();
+}
+
 
 function getStoredUsers() {
     const users = localStorage.getItem('conectanong_users');
@@ -398,6 +524,20 @@ function setupListeners() {
     if (toggleContrastBtn) {
         toggleContrastBtn.addEventListener('click', toggleContrastMode);
     }
+
+    // Listeners da Página ADMIN
+    if (adminForm) {
+        adminForm.addEventListener('submit', handleAdminSubmit);
+    }
+    if (btnClearForm) {
+        btnClearForm.addEventListener('click', clearAdminFormFields);
+    }
+    if (btnDeleteAll) {
+        btnDeleteAll.addEventListener('click', handleDeleteAll);
+    }
+    if (adminSearchInput) {
+        adminSearchInput.addEventListener('input', filterAdminUsers);
+    }
 }
 
 // Funções de Acessibilidade
@@ -485,6 +625,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnNewPost) {
         btnNewPost.addEventListener('click', createNewPost);
+    }
+
+    // Inicialização do Admin
+    if (adminUserList) {
+        renderAdminUserList(getAdminUsers());
     }
 
     setupListeners();

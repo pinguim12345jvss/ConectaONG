@@ -8,6 +8,8 @@
     --texto-color:#333333;
     --dark-header: #112d4e;
     --btn-hover: #38c0ff;
+    --danger-color: #e74c3c;
+    --danger-hover: #c0392b;
 }
 
 * {
@@ -31,6 +33,8 @@ body.high-contrast {
     --texto-color: #ffffff;
     --dark-header: #000000;
     --btn-hover: #ffff94;
+    --danger-color: #ff0000;
+    --danger-hover: #cc0000;
 }
 
 body.high-contrast a {
@@ -123,7 +127,10 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-
+.main-header nav .active-link {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
 
 /* Modal */
 
@@ -196,15 +203,26 @@ a:hover {
     padding: 10px;
     background-color: var(--primary-color);
     color: var(--card-bg);
+    border: none;
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
     text-decoration: none; 
     transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: #7f8c8d;
+}
+.btn-secondary:hover {
+    background-color: #95a5a6;
 }
 
 body.high-contrast #register-form input,
-body.high-contrast #login-form input{
+body.high-contrast #login-form input,
+body.high-contrast #admin-form input,
+body.high-contrast #admin-search-input {
     background-color: #000000;
     color: var(--texto-color);
     border: 1px solid var(--primary-color);
@@ -441,7 +459,8 @@ footer .footer-link:hover{
 
 /* Login e Cadastro */
 
-.cadastro-page main {
+.cadastro-page main,
+.admin-page main {
     min-height: calc(100vh - 120px);
     display: flex;
     align-items: center;
@@ -528,4 +547,153 @@ body.high-contrast .btn-site {
     color: #000000 !important;
 
     border: 3px solid #000000;
+}
+
+/* Pagina Admin  */
+
+.admin-container {
+    max-width: 800px; 
+}
+
+.admin-container .auth-form {
+    align-items: stretch; 
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#admin-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.admin-actions .btn-site {
+    width: 48%;
+    margin: 0;
+}
+
+.divider {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.list-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.list-controls h3 {
+    color: var(--texto-color);
+    margin: 0;
+}
+
+.search-bar-admin {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+.search-bar-admin input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-hover);
+}
+
+/* Lista de Usuários */
+.user-list {
+    list-style: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.user-list li {
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-list li:last-child {
+    border-bottom: none;
+}
+
+.user-info {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.user-info strong {
+    color: var(--primary-color);
+    display: block;
+    font-size: 1.1em;
+}
+
+.user-info span {
+    display: block;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.user-date {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.user-actions {
+    margin-left: 15px;
+}
+
+body.high-contrast .user-list li {
+    background-color: #333;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+body.high-contrast .user-info strong {
+    color: var(--primary-color);
+}
+
+body.high-contrast .user-info span, 
+body.high-contrast .user-date {
+    color: #fff;
 }
