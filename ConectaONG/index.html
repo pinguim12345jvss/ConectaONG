@@ -18,6 +18,8 @@
                     <li><a href="#principais-ONGs">Principais ONGs</a></li>
                     <li><a href="#forum">Forum</a></li>
                     
+                    <li><a href="admin.html" class="nav-btn" style="border-color: transparent;">Admin</a></li>
+
                     <li id="auth-links">
                         <button id="show-login-btn" class="nav-btn">Entrar</button>
                         <a href="cadastro.html" class="nav-btn">Cadastro</a> 
@@ -28,7 +30,10 @@
                     </li>
 
                     <li> 
-                        <button id="toggle-contrast-btn" class="nav-btn">Alto Contraste</button>
+                        <button id="toggle-fontsize-btn" class="nav-btn" title="Aumentar Fonte">A+</button>
+                    </li>
+                    <li> 
+                        <button id="toggle-contrast-btn" class="nav-btn" title="Alto Contraste">Alto Contraste</button>
                     </li>
                 </ul>
             </nav>
@@ -44,14 +49,7 @@
                     <button id="search-button">Buscar</button>
                 </div>
 
-                <div id="ong-list" class="ong-grid">
-                    <article class="ong-card">
-                        <img src="Im" alt="Imagem">
-                        <h3>Nome da ONG</h3>
-                        <p class="ong-genre">Gênero</p>
-                        <a href="#" class="btn-details">Ver Detalhes</a>
-                    </article>
-                </div>
+                <div id="ong-list" class="ong-grid"></div>
                 
                 <div class="genre-filters" style="margin-top: 40px;">
                     <button class="filter-btn active" data-genre="all">Todas</button>
@@ -130,6 +128,4 @@
 
     <script src="script.js"></script>
 </body>
-
-
 </html>

@@ -43,7 +43,7 @@ const ongsData = [
         detailsLink: "#",
         keywords: ["escola", "aprendizagem", "dados", "tecnologia"],
         descricao: "Focado em promover a inclusão social e digital, oferecendo cursos e acesso à tecnologia para comunidades carentes e pessoas com deficiência.",
-        site: "#"
+        site: "https://sibi.ufal.br/portal/?page_id=1755"
     },
     {
         nome: "SOS Mata Atlantica",
@@ -90,6 +90,24 @@ const ongsData = [
         descricao: "Iniciativa focada em inspirar e capacitar meninas e mulheres a ingressarem e se destacarem nas áreas de Ciência, Tecnologia, Engenharia e Matemática (STEM).",
         site: "https://www.techgirls.com.br/"
     },
+    {
+        nome: "Casa Hacker", 
+        causas: ["Social", "Inclusão", "Acessibilidade", "Informativo"], 
+        image: "Imagens/CasaHacker_capa.png",
+        detailsLink: "#",
+        keywords: ["inclusão", "Social", "Tecnologia", "Educação"],
+        descricao: "Organização que trabalha pela emancipação tecnológica das comunidades e a capacidade de grupos organizados de transformar suas realidades.", 
+        site: "https://casahacker.org/"
+    },
+    {
+        nome: "Is it Safe?", 
+        causas: ["Social", "Informativo", "Acessibilidade"], 
+        image: "Imagens/IIS_capa.png",
+        detailsLink: "#",
+        keywords: ["Segurança", "Social", "Tecnologia", "LGBTQIA+"],
+        descricao: "O aplicativo tem o objetivo de garantir a segurança de pessoas trans, mulheres lésbicas desfeminilizadas e outras pessoas da comunidade LGBTQIA+. Ele informa quais locais são mais seguros de se frequentar.", 
+        site: "https://isitsafe.com.br/home"
+    },
 
 ];
 
@@ -125,6 +143,132 @@ const logoutBtn = document.getElementById('logout-btn');
 const toggleContrastBtn = document.getElementById('toggle-contrast-btn');
 const CONTRAST_CLASS = 'high-contrast';
 const STORAGE_KEY_CONTRAST = 'conectaong_contrast_mode';
+
+/* Logica Admin */ 
+
+const adminForm = document.getElementById('admin-form');
+const adminNameInput = document.getElementById('admin-name');
+const adminEmailInput = document.getElementById('admin-email');
+const adminUserList = document.getElementById('admin-user-list');
+const adminSearchInput = document.getElementById('admin-search-input');
+const btnClearForm = document.getElementById('btn-clear-form');
+const btnDeleteAll = document.getElementById('btn-delete-all');
+const emptyListMsg = document.getElementById('empty-list-msg');
+
+const STORAGE_KEY_ADMIN_LIST = 'conectaong_admin_list';
+
+// Recuperar usuários do localStorage (Admin)
+function getAdminUsers() {
+    const users = localStorage.getItem(STORAGE_KEY_ADMIN_LIST);
+    return users ? JSON.parse(users) : [];
+}
+
+// Salvar usuários no localStorage (Admin)
+function saveAdminUsers(users) {
+    localStorage.setItem(STORAGE_KEY_ADMIN_LIST, JSON.stringify(users));
+}
+
+// Renderizar a lista de usuários no Admin
+function renderAdminUserList(usersToRender) {
+    if (!adminUserList) return;
+
+    adminUserList.innerHTML = '';
+
+    if (usersToRender.length === 0) {
+        if (emptyListMsg) emptyListMsg.style.display = 'block';
+        return;
+    }
+
+    if (emptyListMsg) emptyListMsg.style.display = 'none';
+
+    usersToRender.forEach((user, index) => {
+        const li = document.createElement('li');
+        
+        li.innerHTML = `
+            <div class="user-info">
+                <span class="user-date">Cadastrado em: ${user.date}</span>
+                <strong>${user.name}</strong>
+                <span>${user.email}</span>
+            </div>
+            <div class="user-actions">
+                <button class="btn-danger" onclick="deleteAdminUser('${user.id}')">Excluir</button>
+            </div>
+        `;
+        adminUserList.appendChild(li);
+    });
+}
+
+// Adicionar usuário (Admin)
+function handleAdminSubmit(e) {
+    e.preventDefault();
+
+    const name = adminNameInput.value.trim();
+    const email = adminEmailInput.value.trim();
+
+    if (!name || !email) return;
+
+    const newUser = {
+        id: Date.now().toString(), // ID único baseado no timestamp
+        name: name,
+        email: email,
+        date: new Date().toLocaleString('pt-BR')
+    };
+
+    const users = getAdminUsers();
+    users.push(newUser);
+    saveAdminUsers(users);
+
+    renderAdminUserList(users);
+    
+    // Limpar campos
+    adminNameInput.value = '';
+    adminEmailInput.value = '';
+    adminNameInput.focus();
+}
+
+// Excluir um usuário específico
+window.deleteAdminUser = function(userId) {
+    if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
+    
+    let users = getAdminUsers();
+    users = users.filter(user => user.id !== userId);
+    saveAdminUsers(users);
+    
+    // Reaplica filtro se houver pesquisa ativa
+    if (adminSearchInput && adminSearchInput.value) {
+        filterAdminUsers();
+    } else {
+        renderAdminUserList(users);
+    }
+};
+
+// Excluir todos os usuários
+function handleDeleteAll() {
+    if (getAdminUsers().length === 0) return;
+
+    if (confirm('Tem certeza que deseja excluir TODOS os usuários? Esta ação não pode ser desfeita.')) {
+        localStorage.removeItem(STORAGE_KEY_ADMIN_LIST);
+        renderAdminUserList([]);
+    }
+}
+
+// Pesquisar Usuários
+function filterAdminUsers() {
+    const term = adminSearchInput.value.toLowerCase();
+    const users = getAdminUsers();
+
+    const filtered = users.filter(user => 
+        user.name.toLowerCase().includes(term) || 
+        user.email.toLowerCase().includes(term)
+    );
+
+    renderAdminUserList(filtered);
+}
+
+// Limpar Formulário
+function clearAdminFormFields() {
+    if (adminForm) adminForm.reset();
+}
 
 
 function getStoredUsers() {
@@ -208,7 +352,7 @@ function handleRegister(e) {
 
 function closeLoginModal() {
     if (loginModal) {
-        loginModal.style.display = 'none';
+        loginModal.classList.remove('is-active');
         loginMessage.textContent = '';
         if (loginForm) loginForm.reset();
     }
@@ -321,12 +465,12 @@ function showOngDetails(ong) {
     modalOngSiteLink.href = ong.site || "#";
     modalOngSiteLink.textContent = ong.site && ong.site !== "#" ? "Visitar Site Oficial" : "Link do Site Indisponível";
 
-    ongDetailsModal.style.display = "block"; 
+    ongDetailsModal.classList.add('is-active'); 
 }
 
 function closeOngDetails() {
     if (ongDetailsModal) {
-        ongDetailsModal.style.display = "none";
+        ongDetailsModal.classList.remove('is-active');
     }
 }
 
@@ -366,7 +510,7 @@ function setupListeners() {
         if (showLoginBtn) {
             showLoginBtn.addEventListener('click', () => {
                 closeLoginModal();
-                loginModal.style.display = 'block';
+                loginModal.classList.add('is-active');
             });
         }
         
@@ -398,6 +542,20 @@ function setupListeners() {
     if (toggleContrastBtn) {
         toggleContrastBtn.addEventListener('click', toggleContrastMode);
     }
+
+    // Listeners da Página ADMIN
+    if (adminForm) {
+        adminForm.addEventListener('submit', handleAdminSubmit);
+    }
+    if (btnClearForm) {
+        btnClearForm.addEventListener('click', clearAdminFormFields);
+    }
+    if (btnDeleteAll) {
+        btnDeleteAll.addEventListener('click', handleDeleteAll);
+    }
+    if (adminSearchInput) {
+        adminSearchInput.addEventListener('input', filterAdminUsers);
+    }
 }
 
 // Funções de Acessibilidade
@@ -420,6 +578,21 @@ function checkContrastStatus() {
     } else {
         bodyElement.classList.remove(CONTRAST_CLASS);
     }
+}
+
+const toggleFontSizeBtn = document.getElementById("toggle-fontsize-btn");
+
+if (toggleFontSizeBtn) {
+    toggleFontSizeBtn.addEventListener("click", () => {
+        document.body.classList.toggle("large-font");
+
+        // Opcional: texto muda ao ativar
+        if (document.body.classList.contains("large-font")) {
+            toggleFontSizeBtn.textContent = "A-";
+        } else {
+            toggleFontSizeBtn.textContent = "A+";
+        }
+    });
 }
 
 
@@ -485,6 +658,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnNewPost) {
         btnNewPost.addEventListener('click', createNewPost);
+    }
+
+    // Inicialização do Admin
+    if (adminUserList) {
+        renderAdminUserList(getAdminUsers());
     }
 
     setupListeners();
