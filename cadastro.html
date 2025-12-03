@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - ConectaONG</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body class="cadastro-page">
+
+    <header class="main-header">
+        <div class="container">
+            <h1>ConectaONG</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#principais-ONGs">Principais ONGs</a></li>
+                    <li><a href="index.html#generos">Generos/Categorias</a></li>
+                    <li><a href="index.html#forum">Forum</a></li>
+                    
+                    <li><a href="admin.html" class="nav-btn" style="border-color: transparent;">Admin</a></li>
+
+                    <li id="auth-links" style="display:flex;">
+                        <a href="index.html" class="nav-btn">Entrar</a>
+                    </li>
+                    <li><a href="index.html" class="nav-btn">Voltar</a></li>
+
+                    <li> 
+                        <button id="toggle-fontsize-btn" class="nav-btn" title="Aumentar Fonte">A+</button>
+                    </li>
+                    <li> 
+                        <button id="toggle-contrast-btn" class="nav-btn" title="Alto Contraste">Alto Contraste</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section-destaque">
+        <div class="container cadastro-container">
+            <h2>Cadastrar Novo Usuário</h2>
+            <form id="register-form" class="auth-form">
+                <input type="text" id="register-fullname" placeholder="Nome Completo" required>
+                <input type="email" id="register-email" placeholder="Email do Usuário" required>
+                <input type="number" id="register-numero" placeholder="Telefone" required>
+                <input type="text" id="register-username" placeholder="Nome de Usuário" required>
+                <input type="password" id="register-password" placeholder="Senha" required>
+                <button type="submit" class="btn-site">Cadastrar</button>
+                <p id="register-message" class="message"></p>
+            </form>
+
+            <a href="index.html" class="btn-link">Já tem conta? Faça Login</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ConectaONG - Projeto Front End - UTFPR Cornélio Procópio.</p>
+            <p>Feito para estudo. | <a href="curriculo.html" target="_blank" class="footer-link">Ver Meu Currículo</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
